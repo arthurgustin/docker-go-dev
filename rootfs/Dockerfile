@@ -16,6 +16,7 @@ ENV AZCLI_VERSION=2.0.30 \
 RUN \
   sed -i -e 's/^deb-src/#deb-src/' /etc/apt/sources.list && \
   export DEBIAN_FRONTEND=noninteractive && \
+  add-apt-repository ppa:ubuntugis/ppa && \
   apt-get update && \
   apt-get upgrade -y --no-install-recommends && \
   apt-get install -y --no-install-recommends \
@@ -44,6 +45,7 @@ RUN \
     vim \
     wget \
     zip \
+	gdal-bin \
   && curl -L https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz | tar -C /usr/local -xz \
   && curl -sSL https://github.com/Masterminds/glide/releases/download/$GLIDE_VERSION/glide-$GLIDE_VERSION-linux-amd64.tar.gz \
     | tar -vxz -C /usr/local/bin --strip=1 \
